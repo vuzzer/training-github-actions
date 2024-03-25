@@ -1,0 +1,9 @@
+name: training github action
+on: push
+jobs:
+    first-job:
+        name: first jobs
+        runs-on: ubuntu-latest
+        steps:
+            - name: Print first message for github actions
+              run: echo "Github actions"
