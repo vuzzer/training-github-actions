@@ -1,9 +1,20 @@
 name: training github action
 on: push
 jobs:
-    first-job:
-        name: first jobs
+    test-and-build:
         runs-on: ubuntu-latest
         steps:
-            - name: Print first message for github actions
-              run: echo "Github actions"
+            - name: checkout
+              uses: actions/checkout@v4
+            - name: Install nodejs
+              uses: actions/setup-node@v4
+              with:
+                node-version: 20
+            - name: install dependencies
+              run: npm ci
+            - name: lint test
+              run: npm lint
+            - name: test project
+              run: npm test
+            - name: deploy
+              run: npm build
